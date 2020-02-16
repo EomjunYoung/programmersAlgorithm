@@ -1,0 +1,82 @@
+package algo;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+class print {
+
+	int idx;
+	int pri;
+
+	print(int idx, int pri) {
+
+		this.idx = idx;
+		this.pri = pri;
+	}
+
+}
+
+public class programmersStack4 {
+
+	static LinkedList<print> list;
+
+	public static void main(String[] args) {
+
+		list = new LinkedList<>();
+
+		int[] prior = { 1, 1, 9, 1, 1, 1 };
+		int loc = 0;
+
+		int ans = solution(prior, loc);
+		System.out.println(ans);
+
+	}
+
+	static int solution(int[] priorities, int location) {
+
+		int ans = 0;
+		int cnt = 0;
+
+		list = new LinkedList<>();
+
+		for (int i = 0; i < priorities.length; i++) {
+
+			list.add(new print(i, priorities[i]));
+
+		}
+
+		cnt = 1;
+		
+		while (list.size() > 1) {
+
+			print p = list.getFirst();
+			for (int i = 1; i < list.size(); i++) {
+
+				if (p.pri < list.get(i).pri) {
+
+					list.addLast(p);
+					list.removeFirst();
+					break;
+
+				}
+
+				if (i == list.size() - 1) {
+
+					if (p.idx == location) {
+
+						return ans = cnt;
+					}
+
+					cnt++;
+					list.removeFirst();
+				}
+			}
+
+		}
+
+		return ans = cnt;
+	}
+
+}
