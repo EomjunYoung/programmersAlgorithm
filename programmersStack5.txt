@@ -1,0 +1,43 @@
+package algo;
+
+import java.util.LinkedList;
+import java.util.Stack;
+
+public class ProgrammersStack5 {
+
+	static LinkedList<String> list;
+	static LinkedList<String> list2;
+	static Stack<Character> stk;
+
+	public static void main(String[] args) {
+
+		String str = "()(((()())(())()))(())";
+		int ans = solution(str);
+		System.out.println(ans);
+		
+	}
+
+	static int solution(String arrangement) {
+
+		int ans = 0;
+		stk = new Stack<>();
+
+		for (int i = 0; i < arrangement.length(); i++) {
+			if (arrangement.charAt(i) == '(')
+				stk.add(arrangement.charAt(i));
+
+			else {
+				stk.pop();
+				if (arrangement.charAt(i-1) == '(') { 
+
+					ans += stk.size();
+				}else {
+					ans++;
+				}
+			}
+		}
+		return ans;
+
+	}
+
+}
