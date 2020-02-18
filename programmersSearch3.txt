@@ -1,0 +1,85 @@
+import java.util.LinkedList;
+import java.util.List;
+
+class ball {
+
+	int num;
+	int strike;
+	int ball;
+
+	ball(int num, int strike, int ball) {
+		this.num = num;
+		this.strike = strike;
+		this.ball = ball;
+	}
+
+}
+
+class Solution {
+    
+    List<ball> list;
+    
+    public int solution(int[][] baseball) {
+       int ans = 0;
+		list = new LinkedList<>();
+
+		for (int j = 0; j < baseball.length; j++) {
+
+			list.add(new ball(baseball[j][0], baseball[j][1], baseball[j][2]));
+		}
+
+		for (int i = 123; i <= 987; i++) {
+
+            	if (String.valueOf(i).charAt(0) == '0' || String.valueOf(i).charAt(1) == '0'
+					|| String.valueOf(i).charAt(2) == '0') {
+
+				continue;
+			}
+
+			if ((String.valueOf(i).charAt(0) == String.valueOf(i).charAt(1)) ||
+					(String.valueOf(i).charAt(0) == String.valueOf(i).charAt(2)) ||
+							(String.valueOf(i).charAt(1) == String.valueOf(i).charAt(2))) {
+				continue;
+			}
+            
+			for (int j = 0; j < list.size(); j++) {
+
+				int s = 0;
+				int b = 0;
+
+				for (int k = 0; k < 3; k++) {
+
+					for (int z = 0; z < 3; z++) {
+
+						if (String.valueOf(i).charAt(k) != String.valueOf(list.get(j).num).charAt(z)) {
+							continue;
+						}
+
+						if (k == z) {
+							s++;
+						} else {
+							b++;
+						}
+
+					}
+				}
+
+				if ((list.get(j).ball == b) && (list.get(j).strike == s)) {
+
+					if(j == list.size() -1) {
+						ans++;
+                        break;
+					}
+					continue;
+
+				} else {
+					break;
+				}
+
+			}
+
+		}
+
+		return ans;
+    }
+}
