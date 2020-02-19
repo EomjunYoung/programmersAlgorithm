@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+class Solution {
+    
+    List<Integer> list;
+    
+    public int[] solution(int brown, int red) {
+        int[] ans = {};
+		list = new ArrayList<>();
+		
+		int sum = brown + red;
+		int mok = 0;
+		
+		//i 가로길이, mok 세로길이
+		for(int i = 1; i<=sum; i++) {
+			
+			
+			mok = sum/i;
+			
+			if(mok > i) {
+				continue;
+			}else if(i * mok == sum && 2*(i + mok -2) == brown){
+			list.add(i);
+			list.add(mok);
+			break;
+			}
+			
+		
+			
+		}
+		ans = new int[list.size()];
+        
+		for(int i = 0; i<list.size(); i++) {
+			ans[i] = list.get(i);
+		}
+		
+		return ans;
+    }
+} 
