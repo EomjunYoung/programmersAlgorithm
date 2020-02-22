@@ -1,0 +1,32 @@
+class Solution {
+    
+    int cnt = 0;
+	int targetNum = 0;
+    
+    public int solution(int[] numbers, int target) {
+        int ans = 0;
+        targetNum = target;
+
+		dfs(numbers, 0, 0);
+		ans = cnt;
+
+		return ans;
+    }
+    
+    public void dfs(int[] numbers, int depth, int sum) {
+
+		if (depth == numbers.length) {
+
+			if (sum == targetNum) {
+				cnt++;
+				return;
+			} else {
+				return;
+			}
+		}
+
+		dfs(numbers, depth + 1, sum + numbers[depth]);
+		dfs(numbers, depth + 1, sum - numbers[depth]);
+
+	}
+}
